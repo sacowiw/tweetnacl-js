@@ -934,8 +934,14 @@ function checkBoxLengths(pk, sk) {
 
 function checkArrayTypes() {
   for (var i = 0; i < arguments.length; i++) {
-    if (!(arguments[i] instanceof Uint8Array))
-      throw new TypeError('unexpected type, use Uint8Array');
+    // This type check is incompatible with Jest because it injects
+    // its own version of Uint8Array into the environment which is
+    // different.
+    //
+    // See https://github.com/facebook/jest/issues/4422.
+    //
+    // if (!(arguments[i] instanceof Uint8Array))
+    //   throw new TypeError('unexpected type, use Uint8Array');
   }
 }
 
